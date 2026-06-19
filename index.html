@@ -560,7 +560,28 @@
                 overflow-y: auto;
             }
             .boxMail .boxMail-container:hover { transform: none; }
-            .boxMail .boxMail-container:hover .card1 { transform: none; }
+            .boxMail .boxMail-container .card1 {
+                transition: transform 0.8s ease-in, opacity 0.6s ease-in 0.2s;
+            }
+            /* Tap-to-open: JS adds .opened to boxMail-container, which flips card1 up and away */
+            .boxMail-container.opened .card1 {
+                transform: translateY(-60px) rotateX(-110deg);
+                opacity: 0;
+                pointer-events: none;
+            }
+            .boxMail-container:not(.opened) .card2 {
+                display: none;
+            }
+            .card1-front {
+                cursor: pointer;
+            }
+            .card1-tap-hint {
+                font-family: 'Quicksand', sans-serif;
+                font-size: 11px;
+                color: rgba(255,255,255,0.85);
+                margin-top: 8px;
+                letter-spacing: 0.5px;
+            }
             .boxMail .boxMail-container .card1,
             .boxMail .boxMail-container .card2 {
                 position: relative;
@@ -586,15 +607,15 @@
                 overflow-y: auto;
                 max-height: 55vh;
             }
-            /* On mobile, trigger card2 animations on load instead of hover */
-            .boxMail.active .card2:hover h3,
-            .boxMail.active .card2 h3 { animation: fadeIn 1s 0.5s forwards; visibility: visible; }
-            .boxMail.active .card2:hover h2,
-            .boxMail.active .card2 h2 { animation: texth2 2s 1.5s forwards; }
-            .boxMail.active .card2:hover .deco-img,
-            .boxMail.active .card2 .deco-img { animation: texth2 1.5s 0.5s forwards; }
-            .boxMail.active .card2:hover .pics-row img,
-            .boxMail.active .card2 .pics-row img { animation: texth2 1.5s 1s forwards; }
+            /* On mobile, trigger card2 animations when card1 has flipped away (.opened), not on hover */
+            .boxMail-container.opened .card2:hover h3,
+            .boxMail-container.opened .card2 h3 { animation: fadeIn 1s 0.3s forwards; visibility: visible; }
+            .boxMail-container.opened .card2:hover h2,
+            .boxMail-container.opened .card2 h2 { animation: texth2 2s 1s forwards; }
+            .boxMail-container.opened .card2:hover .deco-img,
+            .boxMail-container.opened .card2 .deco-img { animation: texth2 1.5s 0.3s forwards; }
+            .boxMail-container.opened .card2:hover .pics-row img,
+            .boxMail-container.opened .card2 .pics-row img { animation: texth2 1.5s 0.6s forwards; }
             .card2-content .cake-gif { width: 70px; }
             .card2-content .deco-img { width: 40px; }
             .boxMail .boxMail-container .card2 h2 { font-size: 14px; line-height: 1.7; }
@@ -903,6 +924,8 @@
 
         let boxmail = document.querySelector('.boxMail');
         let closeBtn = document.querySelector('.boxMail .fa-xmark');
+        const boxMailContainer = document.querySelector('.boxMail-container');
+        const card1Front = document.querySelector('.card1-front');
 
         // boxMail opens only when user clicks "Open Card" button inside the letter
         document.getElementById('open__card__btn').addEventListener('click', function () {
@@ -911,16 +934,16 @@
 
         closeBtn.addEventListener('click', function () {
             boxmail.classList.remove('active');
+            // Reset the opened state so the card is fresh next time it's opened
+            if (boxMailContainer) boxMailContainer.classList.remove('opened');
         });
 
-        // Mobile: auto-trigger card2 hover animations on tap
-        if (window.matchMedia('(max-width: 768px)').matches) {
-            const card2 = document.querySelector('.card2');
-            if (card2) {
-                document.getElementById('open__card__btn').addEventListener('click', function () {
-                    setTimeout(() => card2.classList.add('mobile-reveal'), 400);
-                });
-            }
+        // Tap card1 to "open" the envelope: flips card1 away and reveals card2 underneath.
+        // Works on mobile (no hover) and also as a tap fallback on desktop.
+        if (boxMailContainer && card1Front) {
+            card1Front.addEventListener('click', function () {
+                boxMailContainer.classList.add('opened');
+            });
         }
     </script>
 </body>
