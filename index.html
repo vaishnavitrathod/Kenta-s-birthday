@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Kenta 🌸</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Dancing+Script:wght@500;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Dancing+Script:wght@700&family=Quicksand:wght@400;600;700&display=swap');
+
+        * { padding: 0; margin: 0; box-sizing: border-box; }
+
+        :root {
+            --lavender: #ffd6df;
+            --lavender-mid: #ffaabb;
+            --lavender-deep: #c0394b;
+            --pink-soft: #ffe0ea;
+            --pink-mid: #ffb3c6;
+            --pink-deep: #e8405a;
+            --cream: #fff5f7;
+            --text-dark: #7a1228;
+            --text-mid: #b03050;
+            --white: #ffffff;
+            --border-color: #ffaabb;
+            --bg-letter: #fff0f3;
+            --shadow-lavender: rgba(192, 57, 75, 0.25);
+        }
+
+        html { height: 100%; }
+
+        body {
+            position: relative;
+            font-size: 16px;
+            margin: 0; padding: 0; height: 100%;
+            background: linear-gradient(135deg, #ffe0ea 0%, #ffb3c6 30%, #ff8fab 60%, #e8405a 100%);
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ── SPARKLES ── */
+        .sparkles-container {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+        }
+        .sparkle {
+            position: absolute;
+            background: radial-gradient(circle, #fff 0%, #ffb3c6 60%, transparent 100%);
+            border-radius: 50%; opacity: 0;
+            animation: twinkle var(--dur, 4s) var(--delay, 0s) infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+        }
+
+        /* ── CHERRY BLOSSOM PETALS ── */
+        .petals-container {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none; z-index: 999;
+            overflow: hidden;
+        }
+        .petal {
+            position: absolute;
+            top: -60px;
+            font-size: 18px;
+            opacity: 0;
+            animation: petalDrift linear infinite;
+            filter: drop-shadow(0 2px 4px rgba(220,80,100,0.3));
+        }
+        @keyframes petalDrift {
+            0%   { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0; }
+            5%   { opacity: 0.85; }
+            85%  { opacity: 0.7; }
+            100% { transform: translateY(110vh) rotate(540deg) translateX(60px); opacity: 0; }
+        }
+        .petal.sway { animation-name: petalSway; }
+        @keyframes petalSway {
+            0%   { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0; }
+            5%   { opacity: 0.85; }
+            25%  { transform: translateY(25vh) rotate(135deg) translateX(30px); }
+            50%  { transform: translateY(50vh) rotate(270deg) translateX(-20px); }
+            75%  { transform: translateY(75vh) rotate(405deg) translateX(40px); }
+            85%  { opacity: 0.7; }
+            100% { transform: translateY(110vh) rotate(540deg) translateX(-10px); opacity: 0; }
+        }
+
+        /* ── WRAPPER ── */
+        #wrapper {
+            position: relative;
+            background-image:
+                linear-gradient(0deg, transparent 24%, rgba(255,255,255,0.6) 25%, rgba(255,255,255,0.6) 26%, transparent 27%, transparent 74%, rgba(255,255,255,0.6) 75%, rgba(255,255,255,0.6) 76%, transparent 77%),
+                linear-gradient(90deg, transparent 24%, rgba(255,255,255,0.6) 25%, rgba(255,255,255,0.6) 26%, transparent 27%, transparent 74%, rgba(255,255,255,0.6) 75%, rgba(255,255,255,0.6) 76%, transparent 77%);
+            height: 100%; background-size: 80px 80px; overflow: hidden; z-index: 1;
+        }
+
+        /* ── FLAG ── */
+        .flag__birthday {
+            display: flex; justify-content: space-between;
+            transform: translateY(-200px);
+            animation: translateYFlag 1.5s 2s forwards;
+            filter: hue-rotate(320deg) saturate(1.1) brightness(1.05);
+        }
+        @keyframes translateYFlag { to { transform: translateY(-10px); } }
+        .flag__birthday .flag__left { transform: rotate(-10deg) translate(-20px, 30px); }
+        .flag__birthday .flag__right { transform: rotate(10deg) translate(20px, 30px) scaleX(-1); }
+
+        /* ── LAYOUT ── */
+        .content { width: 100%; position: relative; display: flex; padding-top: 3rem; }
+        .content .left, .content .right {
+            position: relative; display: flex;
+            flex-direction: column; justify-content: center; align-items: center;
+        }
+        .content .left { width: 40%; }
+        .content .right { width: 60%; }
+
+        /* ── TITLE ── */
+        .title {
+            position: relative; width: 100%; display: flex;
+            justify-content: center; font-family: "Playfair Display", serif;
+            font-size: 3rem; flex-direction: column; perspective: 1000px;
+        }
+        .title .happy, .title .birthday {
+            position: relative; font-weight: bold;
+            display: flex; justify-content: center; letter-spacing: 4px;
+        }
+        .title .happy {
+            color: var(--lavender-deep);
+            text-shadow: 3px 3px var(--text-dark), -3px 3px var(--text-dark), 3px -3px var(--text-dark), -3px -3px var(--text-dark);
+        }
+        .title .birthday {
+            color: var(--pink-deep);
+            text-shadow: 3px 3px var(--text-dark), -3px 3px var(--text-dark), 3px -3px var(--text-dark), -3px -3px var(--text-dark);
+        }
+        .title .happy span, .title .birthday span {
+            transform: translateY(50px); opacity: 0; visibility: hidden;
+            animation: txtTranslateY 0.5s var(--t) forwards;
+        }
+        @keyframes txtTranslateY { 100% { transform: translateY(0); opacity: 1; visibility: visible; } }
+
+        /* ── HAT ── */
+        .title .hat {
+            position: absolute; right: 45px; top: -350px;
+            transform: rotate(-40deg); z-index: -1;
+            animation: topHat 4s 7s forwards ease;
+            filter: hue-rotate(320deg) saturate(1.3);
+        }
+        @keyframes topHat {
+            20%, 30% { top: -30px; transform-origin: left; transform: rotate(-40deg); }
+            35%, 100% { top: -30px; transform: rotate(0deg); }
+        }
+
+        /* ── DATE ── */
+        .date__of__birth, .name {
+            display: flex; justify-content: space-around; align-items: center;
+            background: linear-gradient(135deg, var(--lavender-mid), var(--pink-mid));
+            border-radius: 50px; margin-top: 20px;
+            font-family: 'Dancing Script', cursive;
+        }
+        .date__of__birth {
+            border: 3px solid var(--text-dark); position: relative;
+            transform: translateY(-100px); z-index: -1;
+            opacity: 0; visibility: hidden; width: 0px;
+            animation: dateOfBirth 5s 9s forwards;
+        }
+        @keyframes dateOfBirth {
+            20%, 40% { width: 0px; height: 0; transform: translateY(0px); opacity: 1; visibility: visible; }
+            45% { transform: translateY(0px); opacity: 1; visibility: visible; width: 300px; height: 0px; }
+            50%, 100% { transform: translateY(0px); opacity: 1; visibility: visible; width: 300px; height: 50px; }
+        }
+        .date__of__birth span, .name span { font-weight: bold; margin: 0px 40px; color: var(--text-dark); }
+        .date__of__birth span { font-size: 1.2rem; }
+        .name span { font-size: 1.7rem; }
+
+        /* ── BUTTON ── */
+        .left .btn { transform: scale(0); animation: scaleCricle 2s 16s forwards ease-in-out; }
+        #btn__letter {
+            position: relative; margin-top: 30px;
+            background: linear-gradient(135deg, var(--lavender-deep), var(--pink-deep));
+            outline: none; padding: 8px 20px;
+            border-radius: 50px; border: 3px solid var(--text-dark);
+            font-family: 'Dancing Script', cursive; font-size: 1.1rem; font-weight: 700;
+            color: white; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 2; transition: all 0.5s ease-in-out;
+            box-shadow: 0 4px 15px var(--shadow-lavender);
+        }
+        #btn__letter:active { transform: scale(0.7); }
+        #btn__letter i { margin-left: 8px; }
+        #btn__letter:hover {
+            background: linear-gradient(135deg, var(--pink-deep), var(--lavender-deep));
+            box-shadow: 0 6px 20px var(--shadow-lavender); transform: translateY(-2px);
+        }
+        #btn__letter:hover i { animation: rotateHeart 1s infinite linear; }
+        @keyframes rotateHeart {
+            0%, 50%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(12deg); }
+            75% { transform: rotate(-12deg); }
+        }
+
+        /* ── PROFILE ── */
+        .right .box__account { position: relative; transform: translateY(700px); animation: topBoxImage 8s 7s forwards ease-in; }
+        @keyframes topBoxImage { to { transform: translateY(0); } }
+        .content .right .image {
+            position: relative; width: 400px; height: 400px;
+            border-radius: 50%; overflow: hidden; display: flex; align-items: center;
+            border: 6px solid var(--text-dark);
+            box-shadow: 0 0 0 4px var(--lavender-mid), 0 0 0 8px var(--pink-mid), 0 10px 40px var(--shadow-lavender);
+        }
+        .content .right .image img { width: 100%; object-fit: cover; }
+
+        /* ── NAME TAG ── */
+        .name {
+            position: absolute; padding: 0px 20px; bottom: -20px;
+            border: 3px solid var(--text-dark); font-family: 'Dancing Script', cursive;
+        }
+
+        /* ── CIRCLE TEXT ── */
+        .cricle {
+            position: absolute; top: 20px; right: 50px;
+            display: flex; justify-content: center; align-items: center;
+            transform: scale(0); animation: scaleCricle 3s 15s forwards ease-in-out;
+        }
+        @keyframes scaleCricle {
+            0% { transform: scale(0); } 10% { transform: scale(1.3); }
+            20% { transform: scale(0.7); } 30%, 100% { transform: scale(1); }
+        }
+        .text__cricle {
+            width: 100px; height: 100px;
+            background: linear-gradient(135deg, var(--lavender-mid), var(--pink-mid));
+            border-radius: 50%; border: 5px solid var(--text-dark);
+            display: flex; justify-content: center; align-items: center;
+            animation: rotateCricle 5s linear infinite;
+        }
+        @keyframes rotateCricle { to { transform: rotate(360deg); } }
+        .text__cricle span {
+            top: 0%; left: 50%; position: absolute; color: var(--text-dark);
+            transform: rotate(calc(var(--i) * 24deg)); transform-origin: 0 45px;
+            font-family: 'Quicksand', sans-serif; font-weight: 700;
+            text-transform: uppercase; font-size: 0.7rem;
+        }
+
+        /* ── HEARTS ── */
+        .fa-heart { color: var(--pink-deep); filter: drop-shadow(0 0 4px var(--pink-mid)); animation: scaleHeart 1s infinite linear; }
+        .cricle .fa-heart { position: absolute; transform: scale(0.85); }
+        @keyframes scaleHeart { 50% { transform: scale(1.2); } }
+
+        /* ── BALLOONS ── */
+        .right .balloon_one { position: absolute; top: -70px; left: -70px; animation: balloon1 2s infinite linear; filter: hue-rotate(330deg) saturate(1.1); }
+        @keyframes balloon1 {
+            0%, 50%, 100% { transform-origin: bottom right; transform: rotate(0deg); }
+            25% { transform-origin: bottom right; transform: rotate(3deg); }
+            75% { transform-origin: bottom right; transform: rotate(-3deg); }
+        }
+        .right .balloon_two { position: absolute; top: 170px; right: -65px; z-index: -1; transform: rotate(10deg); animation: balloon2 2s infinite linear; filter: hue-rotate(350deg) saturate(1.1); }
+        @keyframes balloon2 {
+            0%, 50%, 100% { transform-origin: bottom left; transform: rotate(10deg); }
+            25% { transform-origin: bottom left; transform: rotate(7deg); }
+            75% { transform-origin: bottom left; transform: rotate(13deg); }
+        }
+
+        /* ── STARS ── */
+        .decorate_star {
+            position: absolute; transform: scale(0);
+            background: linear-gradient(135deg, var(--lavender-deep), var(--pink-deep));
+            clip-path: polygon(0 50%, 35% 35%, 50% 0, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%);
+            animation: scaleCricle 3s var(--t) forwards, scaleStar 2s 16s infinite ease-in-out;
+        }
+        .decorate_star.star1 { width: 20px; height: 20px; top: 75px; left: 300px; }
+        .decorate_star.star2 { width: 15px; height: 20px; top: 35px; right: 360px; }
+        .decorate_star.star3 { width: 14px; height: 14px; top: 290px; left: 630px; }
+        .decorate_star.star4 { width: 18px; height: 18px; bottom: 60px; left: 35px; }
+        .decorate_star.star5 { width: 16px; height: 18px; bottom: 140px; left: 500px; }
+        @keyframes scaleStar { 25% { transform: scale(0.8); } 50% { transform: scale(1.1); } }
+
+        /* ── FLOWERS & DECO ── */
+        .decorate_bottom { position: absolute; right: 0; bottom: -10px; filter: hue-rotate(320deg) saturate(1.0); }
+        .decorate_flower--one { position: absolute; top: 250px; left: 50px; transform: scale(0); animation: scaleCricle 3s var(--t) forwards ease-in-out; filter: hue-rotate(320deg) saturate(1.1) brightness(1.05); }
+        .decorate_flower--two { position: absolute; top: 225px; left: 540px; transform: scale(0); animation: scaleCricle 3s var(--t) forwards ease-in-out; filter: hue-rotate(320deg) saturate(1.1) brightness(1.05); }
+        .decorate_flower--three { position: absolute; top: 150px; right: 235px; transform: scale(0); animation: scaleCricle 3s var(--t) forwards ease-in-out; filter: hue-rotate(320deg) saturate(1.1) brightness(1.05); }
+        .smiley__icon { position: absolute; bottom: 180px; left: 600px; transform: scale(0); animation: scaleCricle 3s 15s forwards ease-in-out; filter: hue-rotate(320deg) saturate(0.9); }
+
+        /* ── LETTER MODAL ── */
+        .box__letter { position: fixed; top: 0; left: 0; background-color: rgba(74, 44, 107, 0.5); width: 100%; height: 100%; z-index: 10; display: none; }
+        .box__letter .letter__border {
+            position: absolute; width: 55vw; height: 450px;
+            background: linear-gradient(135deg, var(--lavender), var(--pink-soft));
+            border-radius: 27px; padding: 17px;
+            box-shadow: 0 10px 40px var(--shadow-lavender);
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            display: none; border: 2px solid var(--border-color);
+        }
+        .letter__border .close {
+            position: absolute; right: -10px; top: -10px;
+            width: 30px; height: 30px; background-color: var(--lavender-deep);
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 2px 8px var(--shadow-lavender); cursor: pointer; color: white;
+        }
+        .letter__border .letter { width: 100%; height: 100%; background-color: var(--bg-letter); border-radius: 10px; padding-top: 15px; border: 1px solid var(--border-color); }
+        .letter__border .letter .title__letter { text-align: center; font-family: 'Dancing Script', cursive; font-weight: bold; font-size: 2.4rem; color: var(--lavender-deep); }
+        .title__letter .fa-solid { margin-left: 5px; font-size: 1.3rem; color: var(--pink-deep); }
+        .letter__border .letter .content__letter { position: relative; width: 100%; height: 100%; display: flex; padding-top: 1.5rem; padding-bottom: 70px; }
+        .letter__border .letter .content__letter .left { position: relative; width: 50%; height: 100%; padding: 1.7rem; border-right: 3px solid var(--border-color); }
+        .content__letter .left #heart__letter { opacity: 0; width: 100%; }
+        #heart__letter.animationOp { animation: opacityHeart 1s 1s forwards; }
+        @keyframes opacityHeart { to { opacity: 1; } }
+        .content__letter .left .heart { position: absolute; opacity: 0; }
+        .content__letter .left .heart.animation { animation: scaleHeartLetter 1s var(--t) infinite ease-in-out; }
+        @keyframes scaleHeartLetter {
+            0% { opacity: 1; transform: scale(0); } 10% { opacity: 1; transform: scale(1.3); }
+            20% { opacity: 1; transform: scale(0.7); } 30%, 100% { opacity: 1; transform: scale(1); }
+        }
+        .content__letter .left .heart_1 { top: 90px; left: 30px; }
+        .content__letter .left .heart_2 { top: 20px; right: 70px; }
+        .content__letter .left .heart_3 { bottom: 50px; left: 145px; }
+        .content__letter .left .heart_4 { top: 140px; right: 35px; }
+        .content__letter .right { position: relative; width: 50%; }
+        .content__letter .right .love__img { opacity: 0; position: absolute; right: 20px; top: -100px; }
+        .love__img.animationOp { animation: opacityHeart 1s 1s forwards; }
+        .content__letter .right .text__letter { margin-top: 60px; padding: 20px 15px 10px 15px; font-family: 'Dancing Script', cursive; font-size: 1.3rem; color: var(--text-dark); }
+        .content__letter .right #mewmew { position: absolute; bottom: 0; right: 0; opacity: 0; }
+        #mewmew.animationOp { animation: opacityHeart 1s 1s forwards; }
+
+        #open__card__btn {
+            display: none;
+            margin: 10px auto 0 auto;
+            background: linear-gradient(135deg, var(--lavender-deep), var(--pink-deep));
+            color: white; border: none; border-radius: 50px;
+            padding: 8px 22px; font-family: 'Dancing Script', cursive;
+            font-size: 1.1rem; font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 12px var(--shadow-lavender);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative; z-index: 5;
+        }
+        #open__card__btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px var(--shadow-lavender); }
+        #open__card__btn.show { display: block; animation: opacityHeart 0.6s forwards; }
+
+        /* ── MAIL BOX ── */
+        .boxMail {
+            position: fixed; background: rgba(74, 44, 107, 0.8); width: 100%; height: 100%;
+            opacity: 0; top: 0; display: flex; justify-content: center; align-items: center;
+            transform: scale(0.3); visibility: hidden; transition: all 0.5s; z-index: 100000000;
+        }
+        .boxMail.active { opacity: 1; visibility: visible; transform: scale(1); }
+        .boxMail .boxMail-container { position: absolute; width: 860px; height: 560px; display: flex; margin: 0; transform: scale(0.9); -webkit-perspective: 2000px; perspective: 2000px; transition: all 0.5s; }
+        .boxMail .boxMail-container:hover { transform: rotate(-5deg); filter: drop-shadow(0 0 12px var(--lavender-mid)); }
+        .boxMail .boxMail-container:hover .card1 { transform: translate(-215px, -280px) rotateY(-140deg); }
+        .boxMail .boxMail-container .card1, .boxMail .boxMail-container .card2 { position: absolute; width: 100%; height: 100%; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid var(--border-color); }
+
+        /* card1 — fix mirror by using backface-visibility and not rotating the inner content */
+        .boxMail .boxMail-container .card1 { position: absolute; width: 50%; height: 100%; background: linear-gradient(160deg, var(--lavender-deep) 0%, var(--pink-deep) 100%); color: white; display: flex; justify-content: center; align-items: center; flex-direction: column; }
+        .boxMail-container .card1 { z-index: 1; -webkit-transform-style: preserve-3d; transform-style: preserve-3d; transform-origin: left; transition: all 1s ease-in-out; }
+        /* front face of card1 */
+        .boxMail .boxMail-container .card1 .card1-front { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+        .boxMail .boxMail-container .card1 .userImg { position: relative; width: 90px; height: 90px; background-color: white; border-radius: 50%; overflow: hidden; border: 3px solid rgba(255,255,255,0.9); cursor: pointer; margin-bottom: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.25); }
+        .boxMail .boxMail-container .card1 .userImg img { position: absolute; object-fit: cover; width: 100%; height: 100%; }
+        .boxMail .boxMail-container .card1 h4 { font-family: 'Quicksand', sans-serif; font-size: 14px; color: rgba(255,255,255,0.9); margin-bottom: 10px; letter-spacing: 1px; }
+        .boxMail .boxMail-container .card1 h3 { font-family: 'Playfair Display', serif; font-size: 34px; text-transform: uppercase; width: 80%; text-align: center; line-height: 1.4; letter-spacing: 3px; transform: rotate(-5deg); text-shadow: 0 0 10px rgba(255,255,255,0.6); }
+        /* decorative sparkle dots on card1 */
+        .card1-dots { display: flex; gap: 6px; margin-top: 16px; }
+        .card1-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.7); animation: dotPulse 1.5s infinite ease-in-out; }
+        .card1-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .card1-dots span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes dotPulse { 0%,100%{transform:scale(1);opacity:0.7} 50%{transform:scale(1.4);opacity:1} }
+
+        /* card2 */
+        .boxMail .boxMail-container .card2 { position: relative; width: 50%; height: 100%; background: linear-gradient(135deg, var(--lavender), var(--cream) 30%); -webkit-transform-style: preserve-3d; transform-style: preserve-3d; transform-origin: left; transition: all 1s; }
+        .boxMail .boxMail-container .card2 .card2-content { width: 100%; height: 100%; position: relative; background: linear-gradient(160deg, #f3e8ff 0%, #fce4ec 100%); transition: all 1s; overflow-y: auto; font-family: 'Quicksand', sans-serif; color: var(--text-dark); padding: 18px 20px 20px; }
+        .boxMail .boxMail-container:hover .card2-content { transform: translate(20px, 20px); box-shadow: -2px -2px 8px rgba(155, 114, 207, 0.4); }
+
+        /* cake gif row */
+        .card2-content .cake-row { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 8px; }
+        .card2-content .cake-gif { width: 90px; filter: drop-shadow(0 4px 8px rgba(155,114,207,0.4)); }
+        .card2-content .deco-img { width: 55px; opacity: 0; transition: opacity 0.5s; }
+        .boxMail .boxMail-container .card2:hover .deco-img { animation: texth2 1.5s 1s forwards; }
+
+        /* text */
+        .boxMail .boxMail-container .card2 h3 { font-family: 'Dancing Script', cursive; text-align: center; opacity: 0; visibility: hidden; font-size: 26px; color: var(--lavender-deep); margin-bottom: 6px; text-shadow: 0 0 8px rgba(155,114,207,0.4); }
+        .boxMail .boxMail-container .card2:hover h3 { animation: fadeIn 1s 2s forwards; visibility: visible; }
+        .boxMail .boxMail-container .card2 h2 { font-family: 'Dancing Script', cursive; font-size: 18px; opacity: 0; color: var(--text-dark); line-height: 1.6; text-align: center; }
+        .boxMail .boxMail-container .card2:hover h2 { animation: texth2 2s forwards; animation-delay: 3.5s; }
+
+        /* bottom pics row */
+        .card2-content .pics-row { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
+        .card2-content .pics-row img { width: 60px; height: 60px; object-fit: cover; border-radius: 50%; border: 3px solid var(--lavender-mid); opacity: 0; box-shadow: 0 4px 10px var(--shadow-lavender); }
+        .boxMail .boxMail-container .card2:hover .pics-row img { animation: texth2 1.5s forwards; }
+        .boxMail .boxMail-container .card2:hover .pics-row img:nth-child(2) { animation-delay: 0.3s; }
+        .boxMail .boxMail-container .card2:hover .pics-row img:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes fadeIn { 0%{opacity:0;visibility:visible} 100%{opacity:1;visibility:visible} }
+        @keyframes texth2 { 0% { opacity: 0; } 100% { opacity: 1; } }
+        .boxMail .fa-xmark { position: fixed; top: 0; right: 0; font-size: 30px; padding: 10px 25px; cursor: pointer; color: white; z-index: 10000000000000000; }
+
+        /* ── RESPONSIVE ── */
+        @media screen and (max-width: 658px) {
+            .flag__birthday .flag__left { transform: rotate(-10deg) translate(-119px, 3px); }
+            .flag__birthday .flag__right { transform: rotate(10deg) translate(-106px, 39px) scaleX(-1); }
+            .content { flex-direction: column; justify-content: center; gap: 25px; align-items: center; padding-top: 2rem; }
+            .title { font-size: 1.5rem; letter-spacing: 8px; }
+            #btn__letter { width: 209px; padding: 6px 4px; margin-top: 17px; }
+            .cricle { position: absolute; top: 10px; right: -54px; }
+            .title .hat { position: absolute; right: -98px; top: -51px !important; }
+            .box__letter .letter__border { width: 90vw; height: 315px; }
+            .letter__border .letter .title__letter { font-size: 1.4rem; }
+            .letter__border .letter .content__letter { padding-top: 0.7rem; }
+            .content__letter .right .text__letter { margin-top: -14px; font-size: 0.8rem; }
+            .content__letter .right .love__img { right: 126px; top: 167px; }
+            .love__img img { width: 84px; }
+            .content .right .image { width: 200px; height: 200px; }
+            .name { padding: 0px 3px; bottom: -6px; }
+            .name span { font-size: 1rem; }
+            .right .balloon_one { top: 10px; left: -77px; }
+            .right .balloon_one img { width: 76px !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="sparkles-container" id="sparkles"></div>
+    <div class="petals-container" id="petals"></div>
+
+    <div id="wrapper">
+        <div class="flag__birthday">
+            <img src="1.png" alt="" width="350" class="flag__left">
+            <img src="1.png" alt="" width="350" class="flag__right">
+        </div>
+
+        <div class="content">
+            <div class="left">
+                <div class="title">
+                    <h1 class="happy">
+                        <span style="--t: 4s;">H</span>
+                        <span style="--t: 4.2s;">a</span>
+                        <span style="--t: 4.4s;">p</span>
+                        <span style="--t: 4.6s;">p</span>
+                        <span style="--t: 4.8s;">y</span>
+                    </h1>
+                    <h1 class="birthday">
+                        <span style="--t: 5s;">B</span>
+                        <span style="--t: 5.2s;">i</span>
+                        <span style="--t: 5.4s;">r</span>
+                        <span style="--t: 5.6s;">t</span>
+                        <span style="--t: 5.8s;">h</span>
+                        <span style="--t: 6s;">d</span>
+                        <span style="--t: 6.2s;">a</span>
+                        <span style="--t: 6.4s;">y</span>
+                    </h1>
+                    <div class="hat">
+                        <img src="hat.png" alt="" width="130">
+                    </div>
+                </div>
+                <div class="date__of__birth"><span></span></div>
+                <div class="btn">
+                    <button id="btn__letter">
+                        <div class="mail">
+                            Click Here Kenta
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="box__account">
+                    <div class="image">
+                        <img src="c1.jpeg" alt="Kenta">
+                    </div>
+                    <div class="name">
+                        <i class="fa-solid fa-heart"></i>
+                        <span>Dear Kenta</span>
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <div class="balloon_one">
+                        <img width="100px" src="balloon1.png" alt="">
+                    </div>
+                    <div class="balloon_two">
+                        <img width="100px" src="balloon2.png" alt="">
+                    </div>
+                </div>
+                <div class="cricle">
+                    <div class="text__cricle">
+                        <span style="--i: 1;">h</span>
+                        <span style="--i: 2;">a</span>
+                        <span style="--i: 3;">p</span>
+                        <span style="--i: 4;">p</span>
+                        <span style="--i: 5;">y</span>
+                        <span style="--i: 6;">-</span>
+                        <span style="--i: 7;">b</span>
+                        <span style="--i: 8;">i</span>
+                        <span style="--i: 9;">r</span>
+                        <span style="--i: 10;">t</span>
+                        <span style="--i: 11;">h</span>
+                        <span style="--i: 12;">d</span>
+                        <span style="--i: 13;">a</span>
+                        <span style="--i: 14;">y</span>
+                        <span style="--i: 15;">-</span>
+                    </div>
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="decorate_star star1" style="--t: 15s;"></div>
+        <div class="decorate_star star2" style="--t: 15.2s;"></div>
+        <div class="decorate_star star3" style="--t: 15.4s;"></div>
+        <div class="decorate_star star4" style="--t: 15.6s;"></div>
+        <div class="decorate_star star5" style="--t: 15.8s;"></div>
+
+        <div class="decorate_flower--one" style="--t: 15s;">
+            <img width="22" src="decorate_flower.png" alt="">
+        </div>
+        <div class="decorate_flower--two" style="--t: 15.3s;">
+            <img width="22" src="decorate_flower.png" alt="">
+        </div>
+        <div class="decorate_flower--three" style="--t: 15.6s;">
+            <img width="22" src="decorate_flower.png" alt="">
+        </div>
+
+        <div class="decorate_bottom">
+            <img src="decorate.png" alt="" width="100">
+        </div>
+        <div class="smiley__icon">
+            <img src="smiley_icon.png" alt="" width="100">
+        </div>
+
+        <!-- Letter Modal -->
+        <div class="box__letter">
+            <div class="letter__border">
+                <div class="close"><i class="fa-solid fa-xmark"></i></div>
+                <div class="letter">
+                    <div class="title__letter"></div>
+                    <div class="content__letter">
+                        <div class="left">
+                            <img id="heart__letter" src="heart_letter.png" alt="" width="100%">
+                            <img class="heart heart_1" src="heart.png" alt="" width="30" style="--t: 0s;">
+                            <img class="heart heart_2" src="heart.png" alt="" width="25" style="--t: 0.4s;">
+                            <img class="heart heart_3" src="heart.png" alt="" width="20" style="--t: 0.8s;">
+                            <img class="heart heart_4" src="heart.png" alt="" width="28" style="--t: 1.2s;">
+                        </div>
+                        <div class="right">
+                            <img class="love__img" src="love.png" alt="" width="70">
+                            <div class="text__letter"><p></p></div>
+                            <img id="mewmew" src="mewmew.gif" alt="" width="100">
+                            <button id="open__card__btn">Open Card 💌</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mail Box Card -->
+        <div class="boxMail">
+            <i class="fa-solid fa-xmark"></i>
+            <div class="boxMail-container">
+                <div class="card1">
+                    <div class="card1-front">
+                        <div class="userImg">
+                            <img src="c1.jpeg" alt="">
+                        </div>
+                        <h4>To: Kenta 🌸</h4>
+                        <h3>Happy Birthday</h3>
+                        <div class="card1-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card2">
+                    <div class="card2-content">
+                        <h3>🌸 To You! 🌸</h3>
+
+                        <!-- Cake gif + side decorations -->
+                        <div class="cake-row">
+                            <img class="deco-img" src="balloon1.png" alt="">
+                            <img class="cake-gif" src="https://media.tenor.com/0Jw_pOFVjlkAAAAi/birthday-cake.gif" alt="cake" onerror="this.src='./images/love.png'">
+                            <img class="deco-img" src="balloon2.png" alt="">
+                        </div>
+
+                        <h2>Happy Birthday Kenta 🎂🌸 この特別な日に、桜の花があなたに喜びを運んでくれますように――愛や笑い、そして心に抱くすべての夢が叶いますように。あなたは、その場をパッと明るくするような、かけがえのない素晴らしい方です。魔法のような出来事や冒険、そして尽きることのない幸せに満ちた一年になりますように。どうぞ健やかで、祝福に満ちた日々をお過ごしください🌸</h2>
+
+                        <!-- Profile pics row -->
+                        <div class="pics-row">
+                            <img src="c1.jpeg" alt="">
+                            <img src="baby.jpeg" alt="" style="width:70px;height:70px;">
+                            <img src="c1.jpeg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Floating sparkles
+        const sparklesContainer = document.getElementById('sparkles');
+        for (let i = 0; i < 30; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.cssText = `
+                left: ${Math.random() * 100}%;
+                top: ${Math.random() * 100}%;
+                width: ${4 + Math.random() * 6}px;
+                height: ${4 + Math.random() * 6}px;
+                animation-delay: ${Math.random() * 6}s;
+                animation-duration: ${3 + Math.random() * 4}s;
+            `;
+            sparklesContainer.appendChild(sparkle);
+        }
+
+        // Cherry blossom falling petals
+        const petalsContainer = document.getElementById('petals');
+        const petalChars = ['🌸','🌺','✿','❀','🌷'];
+        for (let i = 0; i < 22; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal' + (Math.random() > 0.5 ? ' sway' : '');
+            petal.textContent = petalChars[Math.floor(Math.random() * petalChars.length)];
+            const dur = 5 + Math.random() * 7;
+            petal.style.cssText = `
+                left: ${Math.random() * 105}%;
+                font-size: ${12 + Math.random() * 14}px;
+                animation-duration: ${dur}s;
+                animation-delay: ${Math.random() * 10}s;
+            `;
+            petalsContainer.appendChild(petal);
+        }
+
+        let datetxt = "18 June";
+        let datatxtletter = "Dear friend Kenta, today the cherry blossoms bloom a little more beautifully because it's your birthday. You deserve all the love, joy, and sweetness life has to offer. May this new chapter bring you everything you've been wishing for. Happy Birthday to the most wonderful you! 🌸";
+        let titleLetter = "To Kenta";
+        let charArrDate = datetxt.split('');
+        let charArrDateLetter = datatxtletter.split('');
+        let charArrTitle = titleLetter.split('');
+        let currentIndex = 0, currentIndexLetter = 0, currentIndexTitle = 0;
+        let date__of__birth = document.querySelector(".date__of__birth span");
+        let text__letter = document.querySelector(".text__letter p");
+
+        setTimeout(function () {
+            let timeDatetxt = setInterval(function () {
+                if (currentIndex < charArrDate.length) {
+                    date__of__birth.textContent += charArrDate[currentIndex];
+                    currentIndex++;
+                } else {
+                    let i = document.createElement("i");
+                    i.className = "fa-solid fa-star";
+                    document.querySelector(".date__of__birth").prepend(i);
+                    document.querySelector(".date__of__birth").appendChild(i.cloneNode(true));
+                    clearInterval(timeDatetxt);
+                }
+            }, 100);
+        }, 12000);
+
+        var intervalContent, intervalTitle;
+
+        $("#btn__letter").on("click", function () {
+            $(".box__letter").slideDown();
+            setTimeout(function () { $(".letter__border").slideDown(); }, 1000);
+            setTimeout(function () {
+                intervalTitle = setInterval(function () {
+                    if (currentIndexTitle < charArrTitle.length) {
+                        document.querySelector(".title__letter").textContent += charArrTitle[currentIndexTitle];
+                        let i = document.createElement("i");
+                        i.className = "fa-solid fa-heart";
+                        document.querySelector(".title__letter").appendChild(i);
+                        currentIndexTitle++;
+                    } else { clearInterval(intervalTitle); }
+                }, 100);
+            }, 2000);
+            setTimeout(function () {
+                document.querySelector("#heart__letter").classList.add("animationOp");
+                document.querySelector(".love__img").classList.add("animationOp");
+                document.querySelector("#mewmew").classList.add("animationOp");
+            }, 2800);
+            setTimeout(function () {
+                document.querySelectorAll(".heart").forEach(item => item.classList.add("animation"));
+            }, 3500);
+            setTimeout(function () {
+                intervalContent = setInterval(function () {
+                    if (currentIndexLetter < charArrDateLetter.length) {
+                        text__letter.textContent += charArrDateLetter[currentIndexLetter];
+                        currentIndexLetter++;
+                    } else {
+                        clearInterval(intervalContent);
+                        document.getElementById('open__card__btn').classList.add('show');
+                    }
+                }, 50);
+            }, 6000);
+        });
+
+        $(".close").on("click", function () {
+            clearInterval(intervalContent);
+            document.querySelector(".title__letter").textContent = "";
+            text__letter.textContent = "";
+            currentIndexLetter = 0; currentIndexTitle = 0;
+            document.querySelector("#heart__letter").classList.remove("animationOp");
+            document.querySelector(".love__img").classList.remove("animationOp");
+            document.querySelector("#mewmew").classList.remove("animationOp");
+            document.querySelectorAll(".heart").forEach(item => item.classList.remove("animation"));
+            document.getElementById('open__card__btn').classList.remove('show');
+            $(".box__letter").slideUp();
+            $(".letter__border").slideUp();
+        });
+
+        let boxmail = document.querySelector('.boxMail');
+        let closeBtn = document.querySelector('.boxMail .fa-xmark');
+
+        // boxMail opens only when user clicks "Open Card" button inside the letter
+        document.getElementById('open__card__btn').addEventListener('click', function () {
+            boxmail.classList.add('active');
+        });
+
+        closeBtn.addEventListener('click', function () {
+            boxmail.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
