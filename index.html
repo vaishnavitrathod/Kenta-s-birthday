@@ -31,7 +31,7 @@
             --shadow-lavender: rgba(192, 57, 75, 0.25);
         }
 
-        html { height: 100%; }
+        html { height: 100%; overflow-x: hidden; max-width: 100%; }
 
         body {
             position: relative;
@@ -40,6 +40,7 @@
             background: linear-gradient(135deg, #ffe0ea 0%, #ffb3c6 30%, #ff8fab 60%, #e8405a 100%);
             font-family: 'Quicksand', sans-serif;
             overflow-x: hidden;
+            max-width: 100%;
         }
 
         /* ── SPARKLES ── */
@@ -408,13 +409,17 @@
             .content .left, .content .right {
                 width: 100%;
                 align-items: center;
+                max-width: 100vw;
+            }
+            .right .box__account {
+                margin: 0 auto;
             }
 
             /* Flag: shrink and fix overflow */
-            .flag__birthday { justify-content: center; gap: 0; }
-            .flag__birthday img { width: 180px; }
-            .flag__birthday .flag__left { transform: rotate(-10deg) translate(-10px, 15px); }
-            .flag__birthday .flag__right { transform: rotate(10deg) translate(10px, 15px) scaleX(-1); }
+            .flag__birthday { justify-content: center; gap: 0; max-width: 100vw; overflow: hidden; }
+            .flag__birthday img { width: 130px !important; max-width: 45vw; height: auto; }
+            .flag__birthday .flag__left { transform: rotate(-10deg) translate(0px, 10px); }
+            .flag__birthday .flag__right { transform: rotate(10deg) translate(0px, 10px) scaleX(-1); }
 
             /* Title */
             .title {
@@ -457,19 +462,28 @@
             .name span { font-size: 1.1rem; }
 
             /* Balloons */
-            .right .balloon_one { top: -30px; left: -40px; }
-            .right .balloon_one img { width: 70px !important; }
-            .right .balloon_two { top: 120px; right: -30px; }
-            .right .balloon_two img { width: 70px !important; }
+            .right .balloon_one { top: -25px; left: -15px; }
+            .right .balloon_one img { width: 55px !important; }
+            .right .balloon_two { top: 110px; right: -10px; }
+            .right .balloon_two img { width: 55px !important; }
 
             /* Spinning circle badge */
-            .cricle { top: 10px; right: 20px; }
+            .cricle { top: 0px; right: 5px; transform-origin: center; }
+            .text__cricle { width: 75px; height: 75px; }
+            .text__cricle span { transform-origin: 0 36px; font-size: 0.55rem; }
 
-            /* Hide desktop-only decorations on small screens */
+            /* Hide desktop-only decorations on small screens (their fixed px offsets overflow narrow viewports) */
+            .decorate_star.star1,
+            .decorate_star.star2,
             .decorate_star.star3,
             .decorate_star.star5,
+            .decorate_flower--one,
             .decorate_flower--two,
+            .decorate_flower--three,
             .smiley__icon { display: none; }
+            .decorate_star.star4 { left: 15px; bottom: 30px; }
+            .decorate_bottom { width: 70px; }
+            .decorate_bottom img { width: 70px; }
 
             /* Letter modal */
             .box__letter .letter__border {
@@ -535,12 +549,15 @@
             }
 
             /* Mail box card */
+            .boxMail { padding: 16px 0; }
             .boxMail .boxMail-container {
                 width: 96vw;
                 height: auto;
-                min-height: 420px;
+                max-height: 90vh;
+                min-height: unset;
                 flex-direction: column;
                 transform: scale(1);
+                overflow-y: auto;
             }
             .boxMail .boxMail-container:hover { transform: none; }
             .boxMail .boxMail-container:hover .card1 { transform: none; }
@@ -553,7 +570,9 @@
             }
             .boxMail .boxMail-container .card1 {
                 width: 100%;
-                height: 180px;
+                min-height: 160px;
+                height: auto;
+                padding: 16px 0;
                 border-radius: 16px 16px 0 0;
             }
             .boxMail .boxMail-container .card1 h3 { font-size: 22px; }
@@ -586,7 +605,15 @@
         @media screen and (max-width: 400px) {
             .title { font-size: 1.6rem; letter-spacing: 4px; }
             .content .right .image { width: 180px; height: 180px; }
-            .flag__birthday img { width: 140px; }
+            .flag__birthday img { width: 110px !important; }
+            .right .balloon_one { left: -5px; top: -15px; }
+            .right .balloon_one img { width: 45px !important; }
+            .right .balloon_two { right: -2px; top: 90px; }
+            .right .balloon_two img { width: 45px !important; }
+            .cricle { right: 0; }
+            .text__cricle { width: 65px; height: 65px; }
+            .text__cricle span { transform-origin: 0 31px; font-size: 0.5rem; }
+            .boxMail .boxMail-container { width: 98vw; }
         }
     </style>
 </head>
