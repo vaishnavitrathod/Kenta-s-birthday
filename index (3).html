@@ -397,25 +397,196 @@
         .boxMail .fa-xmark { position: fixed; top: 0; right: 0; font-size: 30px; padding: 10px 25px; cursor: pointer; color: white; z-index: 10000000000000000; }
 
         /* ── RESPONSIVE ── */
-        @media screen and (max-width: 658px) {
-            .flag__birthday .flag__left { transform: rotate(-10deg) translate(-119px, 3px); }
-            .flag__birthday .flag__right { transform: rotate(10deg) translate(-106px, 39px) scaleX(-1); }
-            .content { flex-direction: column; justify-content: center; gap: 25px; align-items: center; padding-top: 2rem; }
-            .title { font-size: 1.5rem; letter-spacing: 8px; }
-            #btn__letter { width: 209px; padding: 6px 4px; margin-top: 17px; }
-            .cricle { position: absolute; top: 10px; right: -54px; }
-            .title .hat { position: absolute; right: -98px; top: -51px !important; }
-            .box__letter .letter__border { width: 90vw; height: 315px; }
-            .letter__border .letter .title__letter { font-size: 1.4rem; }
-            .letter__border .letter .content__letter { padding-top: 0.7rem; }
-            .content__letter .right .text__letter { margin-top: -14px; font-size: 0.8rem; }
-            .content__letter .right .love__img { right: 126px; top: 167px; }
-            .love__img img { width: 84px; }
-            .content .right .image { width: 200px; height: 200px; }
-            .name { padding: 0px 3px; bottom: -6px; }
-            .name span { font-size: 1rem; }
-            .right .balloon_one { top: 10px; left: -77px; }
-            .right .balloon_one img { width: 76px !important; }
+        @media screen and (max-width: 768px) {
+            /* Layout: stack vertically */
+            .content {
+                flex-direction: column;
+                align-items: center;
+                padding-top: 1.5rem;
+                gap: 30px;
+            }
+            .content .left, .content .right {
+                width: 100%;
+                align-items: center;
+            }
+
+            /* Flag: shrink and fix overflow */
+            .flag__birthday { justify-content: center; gap: 0; }
+            .flag__birthday img { width: 180px; }
+            .flag__birthday .flag__left { transform: rotate(-10deg) translate(-10px, 15px); }
+            .flag__birthday .flag__right { transform: rotate(10deg) translate(10px, 15px) scaleX(-1); }
+
+            /* Title */
+            .title {
+                font-size: 2rem;
+                letter-spacing: 6px;
+                align-items: center;
+            }
+            .title .hat {
+                right: -10px;
+                top: -40px !important;
+            }
+
+            /* Date pill */
+            @keyframes dateOfBirth {
+                20%, 40% { width: 0px; height: 0; transform: translateY(0px); opacity: 1; visibility: visible; }
+                45% { transform: translateY(0px); opacity: 1; visibility: visible; width: 220px; height: 0px; }
+                50%, 100% { transform: translateY(0px); opacity: 1; visibility: visible; width: 220px; height: 44px; }
+            }
+            .date__of__birth span { margin: 0 20px; font-size: 1rem; }
+
+            /* Button */
+            #btn__letter {
+                width: 220px;
+                font-size: 1rem;
+                padding: 10px 16px;
+                margin-top: 20px;
+            }
+
+            /* Profile image */
+            .content .right .image {
+                width: 220px;
+                height: 220px;
+            }
+
+            /* Name tag */
+            .name {
+                padding: 2px 14px;
+                bottom: -14px;
+            }
+            .name span { font-size: 1.1rem; }
+
+            /* Balloons */
+            .right .balloon_one { top: -30px; left: -40px; }
+            .right .balloon_one img { width: 70px !important; }
+            .right .balloon_two { top: 120px; right: -30px; }
+            .right .balloon_two img { width: 70px !important; }
+
+            /* Spinning circle badge */
+            .cricle { top: 10px; right: 20px; }
+
+            /* Hide desktop-only decorations on small screens */
+            .decorate_star.star3,
+            .decorate_star.star5,
+            .decorate_flower--two,
+            .smiley__icon { display: none; }
+
+            /* Letter modal */
+            .box__letter .letter__border {
+                width: 94vw;
+                height: auto;
+                min-height: 320px;
+                max-height: 88vh;
+                overflow-y: auto;
+                padding: 12px;
+            }
+            .letter__border .letter {
+                padding-top: 10px;
+                overflow-y: auto;
+            }
+            .letter__border .letter .title__letter {
+                font-size: 1.5rem;
+                padding: 0 10px;
+            }
+            .letter__border .letter .content__letter {
+                flex-direction: column;
+                padding-top: 0.5rem;
+                padding-bottom: 20px;
+                height: auto;
+            }
+            .letter__border .letter .content__letter .left {
+                width: 100%;
+                height: 120px;
+                border-right: none;
+                border-bottom: 2px solid var(--border-color);
+                padding: 0.8rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .content__letter .left #heart__letter { width: 80px; }
+            .content__letter .left .heart_1 { top: 20px; left: 20px; }
+            .content__letter .left .heart_2 { top: 10px; right: 20px; }
+            .content__letter .left .heart_3 { bottom: 10px; left: 60px; }
+            .content__letter .left .heart_4 { top: 50px; right: 20px; }
+            .content__letter .right {
+                width: 100%;
+                padding: 8px 12px 12px;
+                min-height: 160px;
+            }
+            .content__letter .right .love__img {
+                display: none;
+            }
+            .content__letter .right .text__letter {
+                margin-top: 10px;
+                font-size: 0.95rem;
+                padding: 10px 8px 6px;
+            }
+            .content__letter .right #mewmew {
+                position: relative;
+                display: block;
+                margin: 8px auto 0;
+                bottom: auto; right: auto;
+            }
+            #open__card__btn {
+                font-size: 0.95rem;
+                padding: 8px 18px;
+                margin: 10px auto 0;
+            }
+
+            /* Mail box card */
+            .boxMail .boxMail-container {
+                width: 96vw;
+                height: auto;
+                min-height: 420px;
+                flex-direction: column;
+                transform: scale(1);
+            }
+            .boxMail .boxMail-container:hover { transform: none; }
+            .boxMail .boxMail-container:hover .card1 { transform: none; }
+            .boxMail .boxMail-container .card1,
+            .boxMail .boxMail-container .card2 {
+                position: relative;
+                width: 100%;
+                top: auto; left: auto;
+                transform: none;
+            }
+            .boxMail .boxMail-container .card1 {
+                width: 100%;
+                height: 180px;
+                border-radius: 16px 16px 0 0;
+            }
+            .boxMail .boxMail-container .card1 h3 { font-size: 22px; }
+            .boxMail .boxMail-container .card2 {
+                width: 100%;
+                height: auto;
+                border-radius: 0 0 16px 16px;
+            }
+            .boxMail .boxMail-container .card2 .card2-content {
+                padding: 14px 16px 18px;
+                overflow-y: auto;
+                max-height: 55vh;
+            }
+            /* On mobile, trigger card2 animations on load instead of hover */
+            .boxMail.active .card2:hover h3,
+            .boxMail.active .card2 h3 { animation: fadeIn 1s 0.5s forwards; visibility: visible; }
+            .boxMail.active .card2:hover h2,
+            .boxMail.active .card2 h2 { animation: texth2 2s 1.5s forwards; }
+            .boxMail.active .card2:hover .deco-img,
+            .boxMail.active .card2 .deco-img { animation: texth2 1.5s 0.5s forwards; }
+            .boxMail.active .card2:hover .pics-row img,
+            .boxMail.active .card2 .pics-row img { animation: texth2 1.5s 1s forwards; }
+            .card2-content .cake-gif { width: 70px; }
+            .card2-content .deco-img { width: 40px; }
+            .boxMail .boxMail-container .card2 h2 { font-size: 14px; line-height: 1.7; }
+            .boxMail .boxMail-container .card2 h3 { font-size: 20px; }
+            .card2-content .pics-row img { width: 50px; height: 50px; }
+        }
+
+        @media screen and (max-width: 400px) {
+            .title { font-size: 1.6rem; letter-spacing: 4px; }
+            .content .right .image { width: 180px; height: 180px; }
+            .flag__birthday img { width: 140px; }
         }
     </style>
 </head>
@@ -714,6 +885,16 @@
         closeBtn.addEventListener('click', function () {
             boxmail.classList.remove('active');
         });
+
+        // Mobile: auto-trigger card2 hover animations on tap
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            const card2 = document.querySelector('.card2');
+            if (card2) {
+                document.getElementById('open__card__btn').addEventListener('click', function () {
+                    setTimeout(() => card2.classList.add('mobile-reveal'), 400);
+                });
+            }
+        }
     </script>
 </body>
 </html>
